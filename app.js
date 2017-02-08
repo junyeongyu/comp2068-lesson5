@@ -1,11 +1,19 @@
+"use strict";
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var globals = require('./config/globals');
 
 var app = express();
+
+//use mongoose to connect to mongoDB
+var mongoose = require('mongoose');
+var conn = mongoose.connection;
+
+conn.open(globals.db);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
